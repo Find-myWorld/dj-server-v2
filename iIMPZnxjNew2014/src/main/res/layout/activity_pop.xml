@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="544dp"
+    android:layout_height="326dp"
+    android:background="@drawable/pop_activity_back"
+    >
+
+    <TextView
+        android:id="@+id/text_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="临时播报" 
+        android:textColor="#FFFFFF"
+        android:textSize="40dip"
+        android:paddingTop="20dip"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView 
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/text_show"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginBottom="10dip"
+        android:textSize="20dip" 
+        android:text="5秒后窗口自动关闭" 
+        android:textColor="#FFFFFF"/>
+     <TextView
+        android:id="@+id/text_pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_below="@+id/text_show"
+		android:layout_marginTop="20dip"
+		android:layout_marginLeft="15dip"
+		android:layout_marginRight="10dip"
+		android:layout_marginBottom="10dip"
+		android:textColor="#FFFFFF"
+        android:textSize="30dip" />
+
+</RelativeLayout>

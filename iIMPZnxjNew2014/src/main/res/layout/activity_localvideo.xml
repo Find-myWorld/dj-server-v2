@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoShowActivity" >
+
+    <SeekBar
+        android:id="@+id/local_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:visibility="gone" />
+
+    <SurfaceView
+        android:id="@+id/local_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/local_seek_bar" />
+
+    <TextView
+        android:id="@+id/local_scroll_text_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:background="@drawable/bottom_roll"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:paddingTop="50dp"
+        android:visibility="invisible"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/subtitle_text_size" >
+    </TextView>
+
+</RelativeLayout>

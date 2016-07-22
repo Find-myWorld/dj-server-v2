@@ -1,0 +1,219 @@
+Date:2016/05/13
+Desciption:涉及电教所有的Json指令,主要分为两部分：在用的,过期的。UDP通信,终端端口为：7000
+		        操作相关：点击左下角可跳转到设置界面,点击右下角IP可退出应用。
+
+1.发送是否在线命令 
+{"action":"online","data":{"port":"8080"}} 
+新增 {"action":"online","data":{"dowhat":"aply"}}//第三方检测程序每10秒发送此UDP指令，接收后会发广播通知第三方程序，如果第三方程序15秒没收到广播，便打开电教程序。 
+//返回  action:online,result:success,nowtime:yyyy-MM-dd  HH:mm:ss,version:v2.0.0.0
+
+2.手动校时
+{"action":"adjustDate","data":{"serverUrl":"http://192.168.0.91:89/GetCurTime.aspx"}}
+
+3.重启      
+(1)实时重启
+{"action":"reboot","data":{"reboot":"reboot"}}
+(2)定时开关机计划
+//完善 {"action":"onofftimePlan","data":[{"ontime":"13:43","offtime":"13:44","weekDay":"0"},{"ontime":"15:34","offtime":"15:33","weekDay":"0"},{"ontime":"15:08","offtime":"15:08","weekDay":"1"},{"ontime":"2016/05/03 15:06","offtime":"2016/05/03 15:05","weekDay":""}]}
+weekDay参数0表示每天都有，1表示周日（且是每周都会执行，时间不带日期）一次类推，空表示只有一天显示具体的日期
+
+4.自动配置监室号、房间号信息
+//弃用
+{"action":"autoGetNum","data":{"serverIp":"192.168.0.27:19008"}}
+//当前使用
+{"action":"writeSDfile","data":{"serverIp":"192.168.0.162:19008"}}
+
+5.修改终端IP【还需多次测试】
+{"action":"modifyClientIp","data":{"clientIp","subnetmask"}}
+//{"action":"modifyClientIp","data":{"clientIp":"192.168.1.29","subnetmask":"255.255.255.0"}}
+
+6.获取当前状态
+{"action":"getCurrentState","data":{"getState":"get"}}
+//返回getCurrentState:playVCR/playLocalVideo/playLocalMusic/standby/checknote/other  => 直播、流媒体、音乐、首页、协查通报、其它
+
+7.设置直播的方式
+{"action":"setVCRType","data":{"type":"2"}}   默认是科达
+// 海康\科达  1:表示海康，2：表示科达 
+
+8.直播
+{"action":"playVCR","data":{"serverIp","port","channel","userName","passWord","volume"}带音量
+
+{"action":"playVCR","data":{"serverIp","port","channel","userName","passWord"，"deviceChannel"}//这条指令针对于科达的编码器
+//弃用
+
+devicechannel为科达设备编码器的GUid  channel  测通苏州的通过1，2，3，4 分别对应通道0，1，2，3 这里继续沿用，由于没有多次测试不知道这个规律是否正确。
+//{"action":"playVCR","data":{"serverIp":"192.168.0.90","port":"8000","channel":"1","userName":"admin","passWord":"12345"}}  【DVR,通道号从1开始】
+//{"action":"playVCR","data":{"serverIp":"192.168.1.142","port":"8000","channel":"33","userName":"admin","passWord":"12345"}}【NVR,通道号从33开始】
+
+9.直播定时计划
+{"action":"alarmVCR","data":{"serverIp","port","channel","userName","passWord","startTime","endTime","volume"}}带音量
+//{"action":"alarmVCR","data":[{"serverIp":"192.168.1.142","port":"8000","channel":"33","userName":"admin","passWord":"12345","startTime":"2015/07/06 14:48","endTime":"2015/07/06 14:49","weekDay":"0"},
+{"serverIp":"192.168.1.142","port":"8000","channel":"1","userName":"admin","passWord":"12345","startTime":"2015/07/06 20:08","endTime":"2015/07/06 20:22","weekDay":"0"},
+{"serverIp":"192.168.0.64","port":"8000","channel":"1","userName":"admin","passWord":"12345","startTime":"14:46","endTime":"14:47","weekDay":"0"}]}
+注：每日定时的weekDay参数代表周计划“0”代表每天都播，"1"代表周日以此类推。其中时间格式用两种：(1)年月日时分(2)只有时分
+
+10.流媒体播放   (新增支持多视屏播放)带音量
+{"action":"playVideo","data":{"serverIp","fileName"："1.mp4,2.mp4,3.mp4,4.mp4","port","volume"}} 多媒体播放
+{"action":"playVideo","data":{"serverIp","fileName","port"}}       //播放一遍结束	
+{"action":"playVideo","data":{"serverIp","fileName","port","loop"}}//loop=true,循环播放;loop=false,播放一遍结束
+说明:fileName可以以","隔开,用于一次性实时播放多个文件,loop属性为"false"时列表播放完毕不循环播放,其他属性循环播放列表
+ 
+ 
+ 新增 续播功能服务器发送获取当前播放进度
+ {"action":"getCurPercent","data":{"states":""}}
+ 接收到命令会发送广播 获取当前正在播放的视屏的进度，以及返回所有未播放完成的流媒体的名称  返回端口写死9000
+ progressBar:1,currentFile:[电影天堂www.dy2018.com]王朝的女人杨贵妃BD国语中字.rmvb,回家吧117.mp4,夏洛特烦恼.mp4,  （返回参数）
+ 服务器需要接受到参数后返回给我们一个继续播放的指令
+ {"action":"playVideo","data":{"serverIp":"192.168.0.117","fileName":"[电影天堂www.dy2018.com]王朝的女人杨贵妃BD国语中字.rmvb,回家吧117.mp4,夏洛特烦恼.mp4","port":"8058"，
+ “curPercent”:"1"}}（即第一个文件会播放给定的百分比位置）
+ 
+(1)例：播放一遍结束
+{"action":"playVideo","data":{"serverIp":"192.168.0.91","fileName":"1.mp4","port":"89","volume"}}带音量
+(2)例：不循环,播放一遍结束
+{"action":"playVideo","data":{"serverIp":"192.168.0.91","fileName":"1.mp4","port":"89","loop":"false"}}
+(3)例：循环,一直播放
+{"action":"playVideo","data":{"serverIp":"192.168.0.91","fileName":"1.mp4","port":"89","loop":"true"}}
+(4)例：多个流媒体服务器【IP、Port、fileName通过","隔开,不同服务器上的文件通过"&"隔开】
+{"action":"playVideo","data":{"serverIp":"192.168.0.91,192.168.0.114","fileName":"1.mp4&BadApple.mp4","port":"89,8001","loop":"true"}}
+
+
+11.流媒体的定时计划
+(1)定时带周计划
+{"action":"timingPlan","data":[{"fileName":"1.mp4","playTime":"2015/07/06 
+20:13","local":"false","serverIp":"192.168.1.115","port":"89","endTime":"2015/07/06 20:55","weekDay":"0"},
+{"fileName":"day.mp4","playTime":"22:48","local":"false","serverIp":"192.168.1.162","port":"89","endTime":"22:49","weekDay":"0"}]}
+//每日定时的weekDay参数代表周计划“0”代表每天都播，"1"代表周日以此类推 
+	
+(2)定时计划+音量
+{"action":"timingPlan","data":[{"fileName":"1.mp4","playTime":"2015/11/23 16:20","local":"false","serverIp":"192.168.0.91","port":"89","endTime":"2015/11/23 16:23","weekDay":"0","volume":"2"},
+{"fileName":"1.mp4","playTime":"2015/11/24 16:20","local":"false","serverIp":"192.168.0.91","port":"89","endTime":"2015/11/23 16:25","weekDay":"0","volume":"12"},
+{"serverIp":"192.168.0.91","port":"89","playTime":"16:18","fileName":"1.mp4","endTime":"16:19","local":"false"},
+{"serverIp":"192.168.0.91","port":"89","playTime":"16:28","fileName":"22.mp4","endTime":"16:29","local":"false","volume":"12"}]}
+
+12.流媒体暂停、继续  、音量控制、播放进度、跳转
+(1)暂停       
+{"action":"pause","data":{"pause":"pause"}}
+(2)继续
+{"action":"continuePlay","data":{"continuePlay":"continuePlay"}}
+{"action":"continuePlay","data":{"continuePlay":"local"}}当为local是播放本地缓存的流媒体url包括进度
+
+
+(3)音量控制
+{"action":"volume","data":{"movement"}}
+//{"action":"volume","data":{"movement":"up"}}     音量+
+//{"action":"volume","data":{"movement":"down"}}   音量-
+//返回： VOLUME_VALUE:14(当前音量值)
+
+(4)获取播放进度         
+{"action":"progressBar","data":{"state"}}
+//{"action":"progressBar","data":{"state":"state"}}  适用于有些突然暂停 。点击继续播放可以首先获取其他在线设备的播放进度，然后发送给已经暂停播放的设备
+//返回内容：progressBar:33%,currentFile:1.mp4   
+
+(5)跳转到某一进度
+{"action":"jumpTo","data":{"jumpTo":"50"}}}   
+//百分比
+
+
+13:停止(通用的停止方法,包括：直播、流媒体、字幕、协查通报等等)
+{"action":"stopPlay","data":{"stopPlay":"stop"}}
+
+
+14.字幕相关【只有在播视频的时候才会显示字幕】
+(1)开始播放字幕
+{"action":"playSubTitle","data":{"subTitle","showTime"}}
+//{"action":"playSubTitle","data":{"subTitle":"It's show time!","showTime":"1"}}
+
+(2)停止播放字幕
+{"action":"stopSubTitle","data":{"stopPlay":"stop"}}   
+
+15.协查通报//弃用
+{"action":"checknote","data":{"serverIp","picName","showTime","port"}}
+//{"action":"checknote","data":{"serverIp":"192.168.1.253","picName":"1.jpg","showTime":"2","port":"89"}}
+
+16.升级
+{"action":"update","data":{"serverIp","appName","port"}}
+//{"action":"update","data":{"serverIp":"192.168.1.253","appName":"IIMP-Znxj-New2014.apk","port":"89"}}
+
+17.强制退出【待定】//不能完全退出
+{"action":"exit","data":{"do":"exit"}}
+
+18.全屏滚动字幕
+//字段说明：IP、Port、滚动速度(整型参数)、显示时间（整型参数/单位分钟）、文件名（文件内容utf-8格式）
+{"action":"fullSubTitle","data":{"serverIp","port","rollSpeed","showTime","fileName"}}
+{"action":"fullSubTitle","data":{"serverIp":"192.168.1.162","port":"89","rollSpeed":"8","showTime":"10","fileName":"监规制度.txt"}}
+定时字幕计划
+
+新增全屏滚动定时计划
+{"action":"fullSubTitlePlan","data":
+[{"fileName":"产品所需硬件清单.txt","startTime":"17:35","local":"false","serverIp":"192.168.1.114","port":"8001","endTime":"17:36","weekDay":"0","rollSpeed":"2","showTime":"10"}
+,{"fileName":"产品所需硬件清单.txt","startTime":"20:04","local":"false","serverIp":"192.168.1.114","port":"8001","endTime":"20:05","weekDay":"0","rollSpeed":"2","showTime":"10"}
+,{"fileName":"发药提醒.txt","startTime":"2016/04/11 19:46","local":"false","serverIp":"192.168.1.114","port":"8001","endTime":"2016/04/11 19:46","weekDay":"-1","rollSpeed":"1","showTime":"1"}
+,{"fileName":"产品所需硬件清单.txt","startTime":"2016/04/11 19:56","local":"false","serverIp":"192.168.1.114","port":"8001","endTime":"2016/04/11 19:54","weekDay":"-1","rollSpeed":"2","showTime":"10"}]}
+
+19.图片幻灯片显示
+//字段说明：显示时间(单位：分钟)、IP、Port、图片名(英文逗号隔开)、间隔切换时间(单位：秒)
+{"action":"imageSlide","data":{"showTime","serverIp","port","picName","interval"}} 
+//{"action":"imageSlide","data":{"showTime":"10","serverIp":"192.168.1.253","port":"89","picName":"1.jpg,2.jpg,3.jpg","interval":"10"}} 
+
+20.删除定时
+{"action":"delete","data":{"delete":"timingPlan"}}   //删除定时流媒体
+{"action":"delete","data":{"delete":"alarmVCR"}}     //删除定时直播
+{"action":"delete","data":{"delete":"fullSubTitlePlan"}}//删除定时字幕计划 
+
+21.SD卡下视频相关
+(1)下载文件到SD卡 
+{action:download,data:{serverIp,port,filename}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"IIMPHouseinTouch.apk"}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"测试视频.mp4"}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"hj.mp3"}}
+回复：download:true/false/no such file/exists
+
+(2)定时下载文件到SD卡
+{"action":"downLoadPlan","data":[{"serverIp","begintime","filename","port"}]}
+//{"action":"downLoadPlan","data":[{"serverIp":"192.168.1.253","begintime":"2015-2-10 22:10:10","filename":"test1.mp4","port":"89"},
+{"serverIp":"192.168.1.253","begintime":"2015-2-10 22:11:10","filename":"test2.mp4","port":"89"}]}
+
+(3)获取SD卡文件列表
+{"action":"getfilelist","data":{"getlist":"getlist"}}
+//返回： getfilelist:1.mp4,2.mp3,IIMP.apk
+
+(4)删除SD卡下文件
+{"action":"delfile",data:{"filename"}}
+//{"action":"delfile",data:{"filename":"1.mp4"}}
+
+(5)播放SD卡下视频  
+{"action":"playLocalVideo","data":{"fileName"} 
+{"action":"playLocalVideo","data":{"fileName":"ml.wmv"}}
+
+22.配合综合管理平台所需相关参数
+(1)服务器地址+点名时长
+{"action":"configureInfo","data":{"serverIp":"192.168.0.162","port":"8001","cellNumber":"1","duration":"1"}}
+
+(2)后台每次删除数据，需发送下面的指令【不使用】
+{"action":"setEmpty","data":{"do":"setEmpty"}}
+
+(3)开始点名
+{"action":"rollCall","data":{"dowhat":"rollCall","responsePort":"8888","type":"0"}}  
+//0表不实时请求，1表刷卡实时请求
+
+(4)结束点名
+{"action":"rollCall","data":{"dowhat":"end","responsePort":"8888","type":"0"}}
+
+(5)设定值班的时间
+//{"action":"dutytime","data":{"timeArray":"12:00-13:00,14:00-15:00,17:00-19:00"}}             
+//刷卡传参："14:00-15:00|0001289787,000123456"
+当前使用下面这个指令。但是测试表明定制值班人时并没有给前台发送UDP指令
+//{'action':'onduty','data':{'beginhour':'10','beginminute':'08','interval':'1','cycles':'4'}}值班签到后每20分钟弹框提醒一次
+
+9.新增值班签到以及值班提醒的设置
+dutypaltrl:值班签到 "0"表示无，"1"表示有 ，默认是1。dutyremind:值班提醒："0"表示无,"1"表示有,默认是"0","2"表示取消
+{"action":"setDuty","data":{"DutyPaltrl":"0"，"DutyRemind":"0"}}
+ 
+
+直播UDP指令是否接收成功会给  后台发这个指令 "http://" + serverIpAndPort + "/"+Constant.SERVER_PART+"/LogRecord.aspx?deviceIp="
++ getIp() + "&logMessage=" + msg + "&logType=" + type;								
+msg就是海康直播参数:admin="+strUser+",password="+strPsd+",ip="+strIP+",port="+nPort+",channel="+channel；type为normal
+
+23.新增 实时查看
+{"action":"getRealTimeContent","data":["message":""]}
+返回：action:getRealTimeContent,type:流媒体1/直播0/其他-1,filepath:文件路径和名称，state:状态，progressBar:播放进度,channel:通道

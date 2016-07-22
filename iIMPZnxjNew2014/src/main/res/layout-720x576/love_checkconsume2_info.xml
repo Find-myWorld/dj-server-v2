@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/buyokback" >
+
+     <TextView
+         android:id="@+id/buy_sure_item_TextView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/buy_sure_item_textView1"
+         android:layout_marginTop="50dp"
+         android:text="共计消费 24.00 元"
+         android:textColor="#ffffff"
+         android:textSize="40sp" />
+     <!-- android:layout_below="@+id/buy_sure_item_textView1"
+         android:layout_toRightOf="@+id/buy_sure_item_textView1"
+         android:layout_marginLeft="20dp" -->
+
+     <TextView
+         android:id="@+id/buy_sure_item_textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="60dp"
+         android:paddingLeft="20dp"
+         android:text="本次共选中12件物品"
+         android:textColor="#ffffff"
+         android:textSize="40sp" />
+
+     <TextView
+         android:id="@+id/buy_sure_item_textView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/buy_sure_item_textView2"
+         android:layout_marginTop="18dp"
+         android:layout_marginLeft="217dp"
+         android:text="12"
+         android:textColor="#ffffff"
+         android:textSize="25sp"
+         android:textStyle="bold" />
+
+</RelativeLayout>

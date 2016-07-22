@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back4"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_message_top_margin"
+    tools:context=".BuyActivityTest" >
+
+    <TextView
+        android:id="@+id/buy_top_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/title_pading_left"
+        android:paddingTop="@dimen/title_pading_top"
+        android:textSize="@dimen/consume_title_size"
+        android:text="自助消费" />
+
+    <TextView
+        android:id="@+id/buy_top_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buy_top_textView1"
+        android:layout_alignBottom="@+id/buy_top_textView1"
+        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/buy_top_textView1"
+        android:text="|       监房2"
+        android:textSize="@dimen/consume_title_size" />
+
+    <TextView
+        android:id="@+id/buy_top_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buy_top_textView2"
+        android:layout_alignBottom="@+id/buy_top_textView2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/title_pading_right"
+        android:textSize="@dimen/consume_title_size" />
+
+    <ImageView
+        android:id="@+id/buy_top_imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buy_top_textView1"
+        android:layout_below="@+id/buy_top_textView1"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/buy_ryp" />
+
+    <ImageView
+        android:id="@+id/buy_top_imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buy_top_imageView1"
+        android:layout_toRightOf="@+id/buy_top_imageView1"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/buy_lbyp" />
+
+    <ImageView
+        android:id="@+id/buy_top_imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buy_top_imageView2"
+        android:layout_toRightOf="@+id/buy_top_imageView2"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/buy_sp" />
+
+    <ListView
+        android:id="@+id/buy_info_listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buy_top_imageView1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp" 
+        android:layout_marginBottom="50dp"
+    	/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buy_info_listView1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dip"
+        android:textSize="@dimen/consume_tip_size"
+        android:text="选中商品后，输入购买数量，按“确认”键进入付款页面。"
+        />
+	<!-- android:text="本次合计消费  2  件产品：总价  ￥192.00" -->
+
+	<!-- <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/buy_top_textView3"
+    	android:layout_alignBottom="@+id/buy_top_imageView3"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/buysure1" 
+        /> -->
+	
+</RelativeLayout>

@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
+    defaultConfig {
+        applicationId "com.example.iimp_znxj_new2014"
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LGPL2.1'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile project(':initActivity')
+    compile 'com.android.support:support-v4:19.0.1'
+    compile 'com.google.code.gson:gson:1.7.1'
+    compile files('libs/android-async-http-1.4.6.jar')
+    compile files('libs/audio_module.jar')
+    compile files('libs/Baidu_CyberPlayer_SDK_1.7s.jar')
+    compile files('libs/commons-net-ftp-2.0.jar')
+    compile files('libs/HCNetSDK.jar')
+    compile files('libs/jackson-core-lgpl-1.7.4.jar')
+    compile files('libs/jackson-mapper-lgpl-1.7.4.jar')
+    compile files('libs/PlayerSDK.jar')
+    compile files('libs/universal-image-loader-1.9.3.jar')
+    compile files('libs/video_render.jar')
+    compile files('libs/videorecorder.jar')
+    compile files('libs/netty-all-4.1.2.Final.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
+}

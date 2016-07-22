@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/rollcall_item_imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="8dip"
+        android:src="@drawable/man2" />
+
+    <TextView
+        android:id="@+id/rollcall_item_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rollcall_item_imageView1"
+        android:text="Small Text"
+        android:layout_marginBottom="5dp"
+        android:textColor="#9AC8E2"
+        android:textSize="@dimen/gridview_item_size" 
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

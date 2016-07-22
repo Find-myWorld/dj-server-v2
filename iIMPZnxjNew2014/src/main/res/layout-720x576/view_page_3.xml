@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/life_mrcp_bg"
+    android:orientation="vertical"
+    tools:context=".LifeActivity" >
+
+    <TextView
+        android:id="@+id/view_page3_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"                                     
+        android:paddingLeft="150dp"
+        android:paddingTop="50dp"
+        android:gravity="center_horizontal"
+        android:textSize="24sp"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+    <!--  android:text="包子\n煎饼果子\n小油条\n鸡蛋" -->
+    <TextView
+        android:id="@+id/view_page3_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/view_page3_text1"
+        android:paddingLeft="320dp"
+        android:textSize="24sp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/view_page3_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="500dp"
+        android:layout_alignBaseline="@+id/view_page3_text1"
+        android:textSize="24sp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/view_page3_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="150dp"
+        android:paddingTop="240dp"
+        android:textSize="24sp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/view_page3_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="320dp"
+        android:layout_alignBaseline="@+id/view_page3_text4"
+        android:textSize="24sp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/view_page3_text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="500dp"
+        android:layout_alignBaseline="@+id/view_page3_text4"
+        android:textSize="24sp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/complainokback" >
+
+     <TextView
+         android:id="@+id/complain_sure_item_TextView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="210dp"
+         android:layout_marginTop="12dp"
+         android:textColor="#ffffff"
+         android:text="管教/所长/检察官"
+         android:textSize="35sp" />
+
+     <TextView
+         android:id="@+id/complain_sure_item_textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="14dp"
+         android:layout_marginLeft="40dp"
+         android:layout_marginTop="145dp"
+         android:text="预约成功后，请耐心等待,我们会及时回复！"
+         android:textSize="30sp"
+         android:textColor="#ffffff" />
+
+</RelativeLayout>

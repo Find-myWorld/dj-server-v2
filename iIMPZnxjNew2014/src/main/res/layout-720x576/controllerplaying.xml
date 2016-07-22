@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <!-- 百度公司第三方播放控件 -->
+    <RelativeLayout
+        android:id="@+id/view_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/controller_holder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <!-- 半透明<Button android:background="#e0000000" /> 
+		透明<Button android:background="#00000000" />  -->
+     <TextView
+        android:id="@+id/local_scroll_text_baiduvideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:background="@drawable/bottom_roll"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:paddingTop="50dp"
+        android:visibility="invisible"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/subtitle_text_size"
+        >
+    </TextView>
+
+</RelativeLayout>

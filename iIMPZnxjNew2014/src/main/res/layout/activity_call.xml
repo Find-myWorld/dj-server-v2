@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@drawable/call_activity_back"
+    >
+
+    <TextView
+        android:id="@+id/call_top_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="3dp"
+        android:textSize="@dimen/consume_title_size"
+        android:text="交接班通知" />
+
+    <TextView
+        android:id="@+id/call_top_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/call_top_textView1"
+        android:layout_alignBottom="@+id/call_top_textView1"
+        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/call_top_textView1"
+        android:text="|       监房2"
+        android:textSize="@dimen/consume_title_size" />
+
+    <TextView
+        android:id="@+id/call_top_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/call_top_textView2"
+        android:layout_alignBottom="@+id/call_top_textView2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="33dp"
+        android:text="2014-03-01  21:30   星期一"
+        android:textSize="@dimen/consume_title_size" />
+    
+    <TextView
+        android:id="@+id/call_time_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/center_point"
+        android:layout_marginRight="250dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/callactivity_title_size" 
+        android:textStyle="bold"
+        />
+    
+    <TextView 
+        android:id="@+id/center_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />"
+
+    <TextView
+        android:id="@+id/call_content_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="200dp"
+        android:lineSpacingExtra="12dp"
+        android:textColor="#BEE2F6"
+        android:textSize="@dimen/consume_content_size" />
+		<!-- android:text="距离下一班还有5分钟\n值班人：夏建仁\n值班时间：21:00-22:00" -->
+</RelativeLayout>

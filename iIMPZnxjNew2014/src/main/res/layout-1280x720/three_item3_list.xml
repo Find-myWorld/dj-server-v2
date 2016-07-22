@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/three_item3_imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/three_item3_zr1"
+        />
+
+    <TextView
+        android:id="@+id/three_item3_textView1"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:layout_marginRight="10dip"
+        android:textColor="#072758"
+        android:textSize="@dimen/gridview_item_size"
+        />
+    
+    
+    <TextView
+        android:id="@+id/three_item3_textView2"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginRight="40dip"
+        android:singleLine="true"
+        android:textColor="#072758"
+        android:textSize="@dimen/gridview_item_size"
+        />
+
+    <TextView
+        android:id="@+id/three_item3_textView3"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="#072758"
+        android:textSize="@dimen/gridview_item_size"
+        />
+
+</LinearLayout>

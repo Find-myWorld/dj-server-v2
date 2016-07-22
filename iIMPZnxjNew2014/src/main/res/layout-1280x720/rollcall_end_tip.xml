@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rollcall_end_tip" >
+
+     <TextView
+         android:id="@+id/rollcall_item_textView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:paddingLeft="270dip"
+         android:layout_marginTop="155dip"
+         android:text="15"
+         android:textColor="#ffffff"
+         android:textSize="24dip" />
+
+     <TextView
+         android:id="@+id/rollcall_item_textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/rollcall_item_textView1"
+         android:layout_marginLeft="430dip"
+         android:text="12"
+         android:textColor="#ffffff"
+         android:textSize="24dip" />
+     
+     
+     <TextView
+         android:id="@+id/rollcall_item_textView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:paddingLeft="190dip"
+         android:layout_marginTop="214dip"
+         android:textColor="#ffffff"
+         android:textSize="24dip" />
+     
+      <TextView
+         android:id="@+id/rollcall_item_textView4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:paddingLeft="480dip"
+         android:layout_marginTop="315dip"
+         android:text="5s后关闭"
+         android:textColor="#000000"
+         android:textSize="24dip" />
+
+</RelativeLayout>

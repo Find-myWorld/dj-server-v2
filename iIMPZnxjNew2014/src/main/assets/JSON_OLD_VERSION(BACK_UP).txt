@@ -1,0 +1,233 @@
+说明：只做备份
+
+
+1：录像机   （老板子发送此条命令后无返回值）  端口号：7000  |  点击IP显示位置可退出
+{"action":"playVCR","data":{"serverIp","port","channel","userName","passWord"}
+//{"action":"playVCR","data":{"serverIp":"192.168.0.90","port":"8000","channel":"1","userName":"admin","passWord":"12345"}}
+
+//{"action":"setVCRType","data":{"type":"2"}}   //设置直播的方式： 海康/科达  1:表示海康，2：表示科达 默认为2（2015.10.26新增  针对2.0以后的版本）   
+
+NVR
+//{"action":"playVCR","data":{"serverIp":"192.168.1.142","port":"8000","channel":"33","userName":"admin","passWord":"12345"}}
+
+定时直播：
+(1):{"action":"alarmVCR","data":{"serverIp","port","channel","userName","passWord","startTime","endTime"}}
+//{"action":"alarmVCR","data":[{"serverIp":"192.168.0.90","port":"8000","channel":"1","userName":"admin","passWord":"12345","startTime":"17:08","endTime":"17:10"}]}
+{"action":"alarmVCR","data":{"serverIp","port","channel","userName","passWord","startTime","endTime"}
+(2):{"action":"alarmVCR","data":[{"serverIp":"192.168.1.142","port":"8000","channel":"33","userName":"admin","passWord":"12345","startTime":"2015/07/06 14:48","endTime":"2015/07/06 14:49","weekDay":"0" },{"serverIp":"192.168.1.142","port":"8000","channel":"1","userName":"admin","passWord":"12345","startTime":"2015/07/06 20:08","endTime":"2015/07/06 20:22","weekDay":"0" }]}
+	每日定时的weekDay参数代表周计划“0”代表每天都播，"1"代表周日以此类推
+
+2：手动校时：
+{"action":"adjustDate","data":{"serverUrl"}}
+//{"action":"adjustDate","data":{"serverUrl":"http://192.168.0.162:89/GetCurTime.aspx"}}
+
+【已过期】3：发送寻找客户端指令 //已过期
+{"action":"searchDevices","data":{"port":""}}
+返回"action":"searchDevices","dns":xx,"gateway":xxx,"subnetmask":xxx,"appVersion":xxx,"port":xxx "appType":xxxx
+
+/* 
+ *4:播放计划：(每次发送都会覆盖上次的设置)（只播放一次）
+ *{"action":"playPlan","data":[{"playTime","playFileName"}]}
+ *{"action":"playPlan","data":[{"playTime":"2015/3/3 10:30:45","playFileName":"1.mp3"}]}
+*/
+【已过期】4:播放计划：//已过期
+{"action":"playPlan","data":{"serverIp","playTime","playFileName","port"}}
+//{"action":"playPlan","data":[{"serverIp":"192.168.1.170","playTime":"2015/3/12 17:10:00","playFileName":"1.mp4","port":"80"}]}
+
+
+5:播放字幕： 
+//{"action":"playSubTitle","data":{"subTitle","showTime"}}
+//{"action":"playSubTitle","data":{"subTitle":"It's show time!","showTime":"1"}}
+
+6:协查通报：
+{"action":"checknote","data":{"serverIp","picName","showTime","port"}}
+//{"action":"checknote","data":{"serverIp":"192.168.1.253","picName":"1.jpg","showTime":"2","port":"89"}}
+/*{"action":"checknote","data":{"picName","showTime"}}//不用此条指令
+ *{"action":"checknote","data":{"picName":"pic1.jpg","showTime":"1"}}
+ *{"action":"checknote","data":{"picName":"图片2.jpg","showTime":"3"}}
+ */
+
+【已过期】7:紧急通知
+{"action":"emergNote","data":{"serverIp","picName","noteContent","showTime","port"}}无图片时上下文字居中 有图片时在图片下面
+//{"action":"emergNote","data":{"serverIp":"192.168.1.253","picName":"1.jpg","noteContent":"werw","showTime":"2","port":"89"}}
+
+【已过期】8:一日生活制度：//已过期
+{"action":"dailyLife","data":[{"fileName","startTime","endTime"}]}
+//{"action":"dailyLife","data":[{"fileName":"22.mp4","startTime":"09:03","endTime":"09:15"}]}  
+//{"action":"dailyLife","data":[{"fileName":"1.mp4","startTime":"09:43","endTime":"09:45"},{"fileName":"ykw.mp3","startTime":"09:43","endTime":"09:45"}]}
+
+/* 抚州的项目，定时计划是针对服务器上的视频文件的
+【已过期】8:一日生活制度： //
+{{"action":"dailyLife","data":[{"serverIp","fileName","startTime","endTime","port"},{"serverIp","fileName","startTime","endTime","port"},{"serverIp","fileName","startTime","endTime","port"}]}
+//{"action":"dailyLife","data":[{"serverIp":"192.168.1.170","fileName":"1.mp4","startTime":"17:08","endTime":"17:10","port":"80"}]}
+*/
+
+【待定】9:截屏：(暂无)
+{"action":"saveScreen","data":{"serverIp","picName","port"}}
+
+
+10: 播放，暂停，继续播放  
+(1)暂停       
+{"action":"pause","data":{"pause":"pause"}}
+(2)继续播放    
+{"action":"continuePlay","data":{"continuePlay":"continuePlay"}}
+
+11:升级
+{"action":"update","data":{"serverIp","appName","port"}}
+//{"action":"update","data":{"serverIp":"192.168.1.253","appName":"IIMP-Znxj-New2014-GT-NoBuy(5.4).apk","port":"89"}}
+
+12：流媒体  
+//{"action":"playVideo","data":{"serverIp","fileName","port"}}  true表示本地播放(下载到本地之后再播放),false表示直播不需要下载<已过期>
+{"action":"playVideo","data":{"serverIp","fileName","port","loop"}}		fileName可以以","隔开,在结束时间之前进行循环播放,loop属性为"false"时列表播放完毕不循环播放其他属性循环
+ (1) 
+//{"action":"playVideo","data":{"serverIp":"192.168.1.253","fileName":"ml.wmv","port":"89"}}
+{"action":"playVideo","data":{"serverIp":"192.168.1.162","fileName":"1.mp4,BadApple.mp4","port":"89","loop":"false"}}
+{"action":"playVideo","data":{"serverIp":"192.168.1.162","fileName":"1.mp4,BadApple.mp4","port":"89","loop":"true"}}
+{"action":"playVideo","data":{"serverIp":"192.168.1.162","fileName":"1.mp4,BadApple.mp4","port":"89"}}
+{"action":"playVideo","data":{"serverIp":"192.168.1.26,192.168.1.162","fileName":"xf.rmvb,libai.mp3&1.mp4,BadApple.mp4","port":"89,89","loop":"random"}}
+{"action":"playVideo","data":{"serverIp":"192.168.1.26","fileName":"xf.rmvb,libai.mp3","port":"89","loop":"true"}}
+(2)带音量
+{"action":"timingPlan","data":[{"fileName":"libai.mp3","playTime":"16:07","local":"false","serverIp":"192.168.0.26","port":"89","endTime":"16:08","weekDay":"0","loop":"false","volume":"13"},{"fileName":"ltt.rmvb","playTime":"16:06","local":"false","serverIp":"192.168.0.26","port":"89","endTime":"16:09","weekDay":"0","loop":"false","volume":"0"}]}
+
+
+
+
+
+13：民警操作服务器ip变更 //已过期
+{"action":"serverIpChange","data":{"serverIp","port"}}
+   
+14:发送客户端的ip
+{"action":"modifyClientIp","data":{"clientIp","subnetmask"}}
+//{"action":"modifyClientIp","data":{"clientIp":"192.168.1.29","subnetmask":"255.255.255.0"}}
+
+15.发送是否在线命令 
+{"action":"online","data":{"port":"8080"}} 
+//返回  action:online,result:success,version:v1.0.7.0  后面随版本升级，可能是：v1.0.0.1
+
+【待定】16.定时开关机
+{"action":"onofftime","data":{"ontime":"yyyy-MM-dd HH:mm:ss","offtime":"yyyy-MM-dd HH:mm:ss"}}(过期))
+{"action":"onofftime","data":{"ontime":"2015-07-27 14:42:00","offtime":"2015-07-27 14:43:00"}} (过期))
+
+{"action":"onofftime","data":[{"ontime":"13:43","offtime":"13:44"},{"ontime":"13:45","offtime":"13:46"},{"ontime":"13:47","offtime":"13:48}]}
+
+
+
+17:停止(本地播放的停止、协查通报的停止)
+{"action":"stopPlay","data":{"stopPlay":"stop"}}
+
+18:重启      
+{"action":"reboot","data":{"reboot":"reboot"}}
+
+19.下载文件到SD卡   //BigFileTest.mp4
+{action:download,data:{serverIp,port,filename}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"IIMPHouseinTouch.apk"}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"测试视频.mp4"}}
+//{"action":"download","data":{"serverIp":"192.168.1.253","port":"89","filename":"hj.mp3"}}
+回复：download:true/false/no such file/exists
+
+
+20.获取文件列表
+{"action":"getfilelist","data":{"getlist":"getlist"}}
+//返回内容格式为： getfilelist:1.mp4,2.mp3
+
+21.删除文件
+{"action":"delfile",data:{"filename"}}
+//{"action":"delfile",data:{"filename":"1.mp4"}}
+
+22.播放本地视频  
+{"action":"playLocalVideo","data":{"fileName"} 
+{"action":"playLocalVideo","data":{"fileName":"ml.wmv"}}
+
+23.定时下载
+{"action":"downLoadPlan","data":[{"serverIp","begintime","filename","port"}]}
+//{"action":"downLoadPlan","data":[{"serverIp":"192.168.1.253","begintime":"2015-2-10 22:10:10","filename":"test.mp4","port":"89"}]}
+//{"action":"downLoadPlan","data":[{"serverIp":"192.168.1.253","begintime":"2015-2-10 22:10:10","filename":"test1.mp4","port":"89"},{"serverIp":"192.168.1.253","begintime":"2015-2-10 22:11:10","filename":"test2.mp4","port":"89"}]}
+ 
+24.停止播放字幕
+{"action":"stopSubTitle","data":{"stopPlay":"stop"}}   
+
+25.二合一的定时命令
+(1)//{"action":"timingPlan","data":[{"serverIp":"192.168.1.253","port":"89","playTime":"10:13","fileName":"xn.wmv","endTime":"10:14","local":"false"},{"serverIp":"192.168.1.253","port":"89","playTime":"2015/3/20 10:16","fileName":"ml.wmv","endTime":"2015/3/20 10:16","local":"false"}]}
+
+(2)//{"action":"timingPlan","data":[{"serverIp":"192.168.1.253","port":"89","playTime":"2015/6/17 9:45","fileName":"ml.wmv","endTime":"2015/6/17 9:50","local":"false"},{"serverIp":"192.168.1.253","port":"89","playTime":"2015/6/17 9:55","fileName":"ml.wmv","endTime":"2015/6/17 10:00","local":"false"}]}
+
+(3)///////////////
+{"action":"timingPlan","data":[{"serverIp":"192.168.1.253","port":"89","playTime":"2015/3/23 10:50","fileName":"22.mp4","endTime":"10:55","local":"true"},{"serverIp":"192.168.1.253","port":"89","playTime":"2015/3/23 11:00","fileName":"1.mp4","endTime":"2015/3/23 11:16","local":"false"},{"serverIp":"192.168.1.253","port":"89","playTime":"11:30","fileName":"ml.wmv","endTime":"11:40","local":"false"},{"serverIp":"192.168.1.253","port":"89","playTime":"11:55","fileName":"1.mp4","endTime":"11:57","local":"true"}]}
+
+(4)定时带周计划
+{"action":"timingPlan","data":[{"fileName":"1.mp4","playTime":"2015/07/06 20:13","local":"false","serverIp":"192.168.1.115","port":"89","endTime":"2015/07/06 20:55","weekDay":"0"},{"fileName":"day.mp4","playTime":"22:48","local":"false","serverIp":"192.168.1.162","port":"89","endTime":"22:49","weekDay":"0"}]}
+	每日定时的weekDay参数代表周计划“0”代表每天都播，"1"代表周日以此类推 
+///////////////
+
+26.购物模块相关
+配置后台的IP+端口号+监室号+点名时长 //以后需要 
+(1){"action":"configureInfo","data":{"serverIp":"192.168.0.162","port":"8001","cellNumber":"1","duration":"1"}}
+(2)后台每次删除数据，需发送下面的指令
+{"action":"setEmpty","data":{"do":"setEmpty"}}
+(3)点名命令
+{"action":"rollCall","data":{"do":"rollCall"}}
+
+
+26.获取当前状态
+{"action":"getCurrentState","data":{"getState"}}
+//{"action":"getCurrentState","data":{"getState":"get"}}
+返回getCurrentState:playVCR/playLocalVideo/playLocalMusic/standby/checknote/other  => 直播、流媒体、音乐、首页、协查通报、其它
+
+27.音量控制
+{"action":"volume","data":{"movement"}}
+//{"action":"volume","data":{"movement":"up"}}     音量+
+//{"action":"volume","data":{"movement":"down"}}   音量-
+//返回：  /* volum:true/false/max/min  不需要 */ 
+
+28.进度条         
+{"action":"progressBar","data":{"state"}}
+{"action":"progressBar","data":{"state":"state"}}
+//返回内容：progressBar:33%,currentFile:1.mp4   //2015.5.18修改了返回结果
+
+
+29.跳转到某一进度
+{"action":"jumpTo","data":{"jumpTo":"99"}}}   //百分比
+
+30.强制退出
+{"action":"exit","data":{"do":"exit"}}
+
+31.全屏滚动字幕【2015.7.2号新增】     
+//字段说明：IP、Port、滚动速度(整型参数)、显示时间（整型参数/单位分钟）、文件名（文件内容utf-8格式）
+{"action":"fullSubTitle","data":{"serverIp","port","rollSpeed","showTime","fileName"}}
+{"action":"fullSubTitle","data":{"serverIp":"192.168.1.162","port":"89","rollSpeed":"8","showTime":"10","fileName":"监规制度.txt"}}
+
+
+32.图片幻灯片显示
+//字段说明：显示时间(单位：分钟)、IP、Port、图片名(英文逗号隔开)、间隔切换时间(单位：秒)
+{"action":"imageSlide","data":{"showTime","serverIp","port","picName","interval"}} 
+//{"action":"imageSlide","data":{"showTime":"10","serverIp":"192.168.1.253","port":"89","picName":"1.jpg,2.jpg,3.jpg","interval":"10"}} 
+
+【待定】33.图片+文字全屏滚动，沿用以前的 "紧急通知"格式,暂定一张图片一张文字吧。//后期多张图片的话，还是用逗号隔开(UTF-8格式)
+{"action":"emergNote","data":{"serverIp","picName","noteContent","showTime","port"}}
+{"action":"emergNote","data":{"serverIp":"192.168.1.253","picName":"2.jpg","noteContent":"xxxxxxxxx","showTime":"10","port":"89"}}
+
+34.删除定时
+{"action":"delete","data":{"delete":"timingPlan"}}   //删除定时流媒体
+{"action":"delete","data":{"delete":"alarmVCR"}}     //删除定时直播
+
+
+35.TV播放(旧版本，不用，统一为以前的指令)
+{"action":"TVShow","data":{"ip":"192.168.0.144","port":"8000","channel":"33","user":"admin","passWord":"12345"}}
+
+36.设定值班的时间、间隔时间、轮次:
+//{"action":"dutytime","data":{"timeArray":"12:00-13:00,14:00-15:00,17:00-19:00"}}             
+//刷卡传参："14:00-15:00|0001289787,000123456"
+
+37.点名   @dianming@<已过期>
+//{"action":"rollCall","data":{"do":"rollCall","responsePort":"8888"}}<9.10号变更>
+
+{"action":"rollCall","data":{"dowhat":"rollCall","responsePort":"8888","type":"0"}}   
+//0表不实时请求，1表刷卡实时请求
+
+提前结束点名
+//{"action":"rollCall","data":{"dowhat":"end","responsePort":"8888","type":"0"}}<10.12号新增>
+
+38.自动配置监室号、房间号信息
+{"action":"autoGetNum","data":{"serverIp":"192.168.1.117:7500"}}
+
+

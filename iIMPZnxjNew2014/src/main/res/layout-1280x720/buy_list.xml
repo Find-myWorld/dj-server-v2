@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="wrap_content" >
+    
+    <ImageView
+        android:id="@+id/buy_item_imageView1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/buy_produres_pic" />
+     
+    <TextView
+        android:id="@+id/buy_item_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="38dp"
+        android:layout_toRightOf="@+id/buy_item_imageView1"
+        android:text="方便面"
+        android:textColor="#DEF7FA"
+        android:textSize="@dimen/consume_content_size" />
+    
+   <TextView
+        android:id="@+id/buy_item_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/buy_item_textView4"
+        android:layout_marginTop="10dp"
+        android:text="单价 ￥8.00"
+        android:textColor="#F7CC20"
+        android:textSize="@dimen/consume_content_size" />
+
+   <TextView
+        android:id="@+id/buy_item_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buy_item_textView1"
+        android:layout_below="@+id/buy_item_textView1"
+        android:text="南京中萃生产，牛肉口味，润华香甜"
+        android:textColor="#C8CFDB"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/consume_introduct_size" />
+
+    <TextView
+        android:id="@+id/buy_item_textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/buy_item_textView5"
+        android:layout_alignBottom="@+id/buy_item_textView3"
+        android:text="购买数量:  "
+        android:textColor="#DEF7FA"
+        android:textSize="@dimen/consume_content_size" />
+
+    <TextView
+        android:id="@+id/buy_item_textView5"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buy_item_textView4"
+        android:layout_alignBottom="@+id/buy_item_textView3"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="51dp"
+        android:background="#DEF7FA"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="0"
+        android:textColor="#00000f"
+        android:textSize="@dimen/consume_content_size" />
+
+</RelativeLayout>

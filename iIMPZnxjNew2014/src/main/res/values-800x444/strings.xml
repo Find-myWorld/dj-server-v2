@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">智能电教</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_choose_menu">ChooseMenuActivity</string>
+    <string name="title_activity_tvshow">TVShowActivity</string>
+    <string name="descr_image">Image</string>
+    
+    <string name="menu_item_clear_memory_cache">Clear memory cache</string>
+    <string name="menu_item_clear_disc_cache">Clear disc cache</string>
+    <string name="menu_item_pause_on_scroll">Pause on scroll</string>
+    <string name="menu_item_pause_on_fling">Pause on fling</string>
+    
+    <string name="setting_server">服务器</string>
+     <string name="setting_ip">服务器名称或IP</string>
+    <string name="setting_maprefresh">巡更位置更新频率</string>
+    <string name="setting_registration">注册信息</string>
+    <string name="setting_blank_server">请输入服务器名称或IP设置</string>
+    <string name="setting_modified">系统设置已更新</string>
+    
+     <string name="title_activity_complain">ComplainActivity</string>
+
+</resources>

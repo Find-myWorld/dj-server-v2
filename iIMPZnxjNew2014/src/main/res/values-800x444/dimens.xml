@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">2dp</dimen>
+    <dimen name="activity_vertical_margin">2dp</dimen>
+    <dimen name="subtitle_setting_width">277.5dip</dimen>
+    <dimen name="subtitle_setting_height">190dip</dimen>
+    <dimen name="subtitle_text_size">60dp</dimen>
+    <dimen name="activity_message_top_margin">10dp</dimen>
+    <dimen name="title_pading_right">45dp</dimen>
+    <dimen name="title_pading_left">30dp</dimen>
+    <dimen name="title_pading_top">10dp</dimen>
+
+    <dimen name="consume_title_size">35dip</dimen> 
+    <!-- USB参数设置 -->
+    <dimen name="consume_content_size">50dip</dimen>
+    <dimen name="consume_introduct_size">40dip</dimen>
+    <dimen name="consume_tip_size">40dip</dimen>
+    <dimen name="gridview_item_size">50dip</dimen>
+    <dimen name="listview_item_size">25dip</dimen>
+    <dimen name="spcing_size">20dip</dimen>
+    <dimen name="text_size_big">80dip</dimen>
+    <dimen name="text_size_menu">40dip</dimen>
+    <dimen name="text_size_result">35dip</dimen>
+    
+    
+      <dimen name="large_text_size">22dp</dimen>
+    <dimen name="middle_text_size">20dp</dimen>
+     <dimen name="middle_i_text_size">18dp</dimen>
+
+   <!--  <dimen name="consume_title_size">28sp</dimen>
+ 兖州AV输出尺寸
+    <dimen name="consume_content_size">35sp</dimen>
+    <dimen name="consume_introduct_size">30sp</dimen>
+    <dimen name="consume_tip_size">22sp</dimen>
+    <dimen name="gridview_item_size">25sp</dimen>
+    <dimen name="listview_item_size">25sp</dimen>
+    <dimen name="spcing_size">20dp</dimen>
+    <dimen name="text_size_big">80dip</dimen> -->
+
+</resources>

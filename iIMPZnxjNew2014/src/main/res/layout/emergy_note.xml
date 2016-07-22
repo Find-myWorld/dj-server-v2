@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emergy_note"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/emegy_dialog"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="50dp" >
+
+    <ImageView
+        android:id="@+id/emergy_note_pic"
+        android:layout_width="500dp"
+        android:layout_height="320dp" />
+
+    <TextView
+        android:id="@+id/emergy_note_text"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:textSize="70sp" />
+
+</LinearLayout>
