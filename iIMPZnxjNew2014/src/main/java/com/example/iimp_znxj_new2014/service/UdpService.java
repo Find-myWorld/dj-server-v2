@@ -270,10 +270,14 @@ public class UdpService extends Service implements ParseListener {
 
 		EventBus.getDefault().register(this);
 	}
-
+	/*接收来自操作的数据，解析*/
 	@Subscribe
 	public void onEventMainThread(JsonEvent event){
 		System.err.println("onEventMainThread:" + event.getJsonstr());
+		parseProcessor = ParseProcessor
+				.getInstance(UdpService.this);
+		parseProcessor.registerParseListener(UdpService.this);
+		parseProcessor.parseData(event.getJsonstr()); // 解析接收到的json格式数据
 
 	}
 

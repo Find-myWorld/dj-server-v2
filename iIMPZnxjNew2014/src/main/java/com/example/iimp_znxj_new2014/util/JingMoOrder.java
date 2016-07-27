@@ -783,7 +783,7 @@ public class JingMoOrder {
 			}
 		});
 	} 
-    
+
     /*
 	 * 功能：解析xml
 	 */

@@ -109,7 +109,8 @@ public class VideoShowActivity extends BaseActivity implements OnCompletionListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
-		
+
+		//Vitamio.initialize(this);
 		// 判断动态链接库(so)是否已经成功加载完成。
 		if (!LibsChecker.checkVitamioLibs(this)) {
 			this.finishAndGOtoIndex();

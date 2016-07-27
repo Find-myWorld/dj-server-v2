@@ -4,6 +4,7 @@ package com.example.iimp_znxj_new2014.netty;
 import com.example.iimp_znxj_new2014.entity.JianshiMediaPlay;
 import com.example.iimp_znxj_new2014.entity.PlayVCR;
 import com.example.iimp_znxj_new2014.entity.PlayVideo;
+import com.example.iimp_znxj_new2014.entity.PlayVideoAction;
 import com.example.iimp_znxj_new2014.event.JsonEvent;
 import com.example.iimp_znxj_new2014.util.Constant;
 import com.example.iimp_znxj_new2014.util.JsonUtils;
@@ -31,15 +32,19 @@ public class JsonProcessorFactory {
             case Constant.TYPE_MEDIA_PLAY:
             if(object instanceof JianshiMediaPlay) {
                 List<String> files = ((JianshiMediaPlay) object).getMovieFiles();
-                final PlayVideo playVideo = new PlayVideo();
-                playVideo.setFileName(files.get(0));
-                playVideo.setPort(PORT);
-                playVideo.setSeverIp(SEVER_IP);
+                final PlayVideoAction playVideoAction = new PlayVideoAction();
+                playVideoAction.setAction("playVideo");
+                PlayVideoAction.DataBean dataBean = new PlayVideoAction.DataBean();
+                dataBean.setFileName(files.get(0));
+                dataBean.setPort(PORT);
+                dataBean.setServerIp(SEVER_IP);
+                playVideoAction.setData(dataBean);
+
                 new Thread(){
                     @Override
                     public void run() {
                         try {
-                            String s = JsonUtils.encode(playVideo);
+                            String s = JsonUtils.encode(playVideoAction);
                             System.err.println(s);
                             EventBus.getDefault().post(new JsonEvent(s));
                         } catch (IOException e) {

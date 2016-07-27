@@ -55,9 +55,16 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
             mediaPlayResult(ctx, strings[0]);
         }else if(strings[1].equals("playControl")){
             playControlResult(ctx, strings[0]);
+        }else if(strings[1].equals("login")){
+            excutePlanManage();
         }
 
     }
+    /*执行播放计划*/
+    private void excutePlanManage() {
+
+    }
+
     /*处理播放控制*/
     private void playControlResult(ChannelHandlerContext ctx, String msg) {
         JsonProcessorFactory.changeJsonType(msg,Constant.TYPE_MEDIA_CONTROL);
